@@ -129,16 +129,30 @@ Plugin install:
 /plugin marketplace remove explain-my-way
 ```
 
-Personal skill install (PowerShell):
+Personal skill install, Windows (PowerShell):
 
 ```powershell
 Remove-Item -Recurse "$HOME\.claude\skills\explain-my-way-setup"
 ```
 
-In both cases, also delete your output style:
+Personal skill install, macOS / Linux:
+
+```bash
+rm -rf ~/.claude/skills/explain-my-way-setup
+```
+
+With either install, also delete your output style.
+
+Windows (PowerShell):
 
 ```powershell
 Remove-Item "$HOME\.claude\output-styles\explain-my-way.md"
+```
+
+macOS / Linux:
+
+```bash
+rm ~/.claude/output-styles/explain-my-way.md
 ```
 
 ## Limits
@@ -157,14 +171,6 @@ Version 0.3 — early draft, tested on Windows. Feedback and issues welcome.
 - Setup skips the save-location question when both options are the same folder.
 - Code change explanations: changes outside the main topic go under Risk, a length target, at most three new terms.
 - The "want more" line is one sentence with at most three offers.
-
-### Changes in 0.2
-
-- Tests are shown as plain text with a topic line (the pop-up hid the texts).
-- Setup writes no files except your output style; no shell commands; no memory writes.
-- Neutral examples in the setup questions.
-- Output style: strict "short first" priority, a stated key point, only needed terms, no unexplained abbreviations, closest-structure analogies.
-- Renamed to `explain-my-way` (no spaces) and `/explain-my-way-setup`.
 
 ## License
 
