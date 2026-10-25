@@ -1,0 +1,14 @@
+{
+  "name": "explain-my-way",
+  "description": "Claude Code plugin that tunes explanations to how you understand things.",
+  "owner": {
+    "name": "Bence"
+  },
+  "plugins": [
+    {
+      "name": "explain-my-way",
+      "source": "./",
+      "description": "Makes Claude Code explain concepts, terms and code changes in the way you understand them."
+    }
+  ]
+}

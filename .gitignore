@@ -1,0 +1,16 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+
+# Local Claude Code files (personal settings, never published)
+.claude/settings.local.json
+CLAUDE.local.md
+
+# Personal notes kept outside the published project
+PROJECT_HISTORY.md
+CLAUDE.md
