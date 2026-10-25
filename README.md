@@ -1,3 +1,5 @@
+<img src=".claude-plugin/icon.png" alt="explain-my-way icon" width="96" align="right">
+
 # explain-my-way
 
 AI agents often explain things like a textbook: every word is familiar, but the meaning does not come through. explain-my-way makes Claude Code explain concepts, domain terms and code changes in the way **you** understand them.
