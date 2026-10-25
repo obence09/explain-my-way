@@ -11,7 +11,8 @@ It is not built on "personality types" or "learning styles" (the research does n
 In your terminal:
 
 ```bash
-claude plugin marketplace add obence09/explain-my-way && claude plugin install explain-my-way@explain-my-way
+claude plugin marketplace add obence09/explain-my-way
+claude plugin install explain-my-way@explain-my-way
 ```
 
 Then start Claude Code and run `/explain-my-way:explain-my-way-setup`.
@@ -163,7 +164,7 @@ rm ~/.claude/output-styles/explain-my-way.md
 
 ## Status
 
-Version 0.3 — early draft, tested on Windows. Feedback and issues welcome.
+Version 0.3 — early version, tested on Windows. Feedback and issues welcome.
 
 ### Changes in 0.3
 
