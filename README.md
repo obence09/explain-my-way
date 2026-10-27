@@ -2,13 +2,15 @@
 
 # explain-my-way
 
-AI agents often explain things like a textbook: every word is familiar, but the meaning does not come through. explain-my-way makes Claude Code explain concepts, domain terms and code changes in the way **you** understand them.
+AI agents often explain things like a textbook: every word is familiar, but the meaning does not come through. explain-my-way makes Claude Code and Cursor explain concepts, domain terms and code changes in the way **you** understand them.
 
 It is not built on "personality types" or "learning styles" (the research does not support matching explanations to a type). It uses well-tested rules for clear explanations, plus a few personal settings that come from a short test of what actually lands for you.
 
 ## Quick start
 
-In your terminal:
+Using Cursor? Jump to [Install in Cursor](#install-in-cursor).
+
+Claude Code, in your terminal:
 
 ```bash
 claude plugin marketplace add obence09/explain-my-way
@@ -59,7 +61,7 @@ So there are no types. There are adjustable settings, filled from what actually 
 - **Code changes explained with a map:** where the change sits, before vs after, why, and what could break.
 - Answers in the language you write in.
 
-## Install
+## Install in Claude Code
 
 ### Option 1 — as a plugin (recommended)
 
@@ -109,6 +111,61 @@ The `/output-style` choice is saved for the current folder only. To use the styl
 
 To change settings later: `/explain-my-way-setup update`.
 
+## Install in Cursor
+
+Cursor has no output styles, so in Cursor explain-my-way becomes a **rule**: text that Cursor adds to every chat. The Cursor version has its own setup command, `/explain-my-way-cursor-setup`.
+
+### Option 1 — from the Cursor Marketplace
+
+Once explain-my-way is listed in the Cursor Marketplace: open **Customize** in the sidebar, find **explain-my-way**, select **Install**, and choose the user scope.
+
+### Option 2 — as a local plugin
+
+Clone the repository into Cursor's local plugin folder.
+
+Windows (PowerShell):
+
+```powershell
+git clone https://github.com/obence09/explain-my-way.git "$HOME\.cursor\plugins\local\explain-my-way"
+```
+
+macOS / Linux:
+
+```bash
+git clone https://github.com/obence09/explain-my-way.git ~/.cursor/plugins/local/explain-my-way
+```
+
+Then restart Cursor, or run **Developer: Reload Window** from the command palette. Some company setups turn off local plugins; if so, use option 3.
+
+### Option 3 — as a personal skill (always works)
+
+Copy the folder `cursor/skills/explain-my-way-cursor-setup` into Cursor's personal skills folder.
+
+Windows (PowerShell):
+
+```powershell
+git clone https://github.com/obence09/explain-my-way.git
+New-Item -ItemType Directory -Force "$HOME\.cursor\skills" | Out-Null
+Copy-Item -Recurse ".\explain-my-way\cursor\skills\explain-my-way-cursor-setup" "$HOME\.cursor\skills\explain-my-way-cursor-setup"
+```
+
+macOS / Linux:
+
+```bash
+git clone https://github.com/obence09/explain-my-way.git
+mkdir -p ~/.cursor/skills
+cp -r ./explain-my-way/cursor/skills/explain-my-way-cursor-setup ~/.cursor/skills/
+```
+
+### Run setup
+
+In a Cursor chat, type `/explain-my-way-cursor-setup`. At the end, setup asks where your rule should apply:
+
+- **All projects (recommended):** setup shows your finished rule in one block. Copy it and paste it into **Customize → Rules → User Rules**. Cursor keeps User Rules in its settings, not in a file, so this one step is manual.
+- **Only this project:** setup writes `.cursor/rules/explain-my-way.mdc`, set to always apply. It holds your personal profile, so in a shared repository keep it out of version control.
+
+Start a new chat to use it. To change settings later: `/explain-my-way-cursor-setup update`.
+
 ## How it works
 
 | File | What it is |
@@ -116,6 +173,9 @@ To change settings later: `/explain-my-way-setup update`.
 | `skills/explain-my-way-setup/SKILL.md` | The setup flow: three quick tests, four questions, writes your output style |
 | `skills/explain-my-way-setup/calibration-pairs.md` | The tests: the same idea explained in different ways |
 | `skills/explain-my-way-setup/style-template.md` | The output style rules, with a slot for your profile |
+| `.claude-plugin/` | Plugin manifest for Claude Code |
+| `cursor/skills/explain-my-way-cursor-setup/` | The same setup for Cursor; it creates a Cursor rule instead of an output style |
+| `.cursor-plugin/` | Plugin manifest for Cursor |
 
 The output style keeps Claude Code's normal coding behaviour (`keep-coding-instructions: true`). It only changes how things are explained.
 
@@ -156,15 +216,38 @@ macOS / Linux:
 rm ~/.claude/output-styles/explain-my-way.md
 ```
 
+### Remove from Cursor
+
+1. Delete your rule: the User Rule in **Customize → Rules**, or the file `.cursor/rules/explain-my-way.mdc` in each project where you saved it.
+2. Uninstall the plugin in **Customize**, or delete the local plugin or skill folder.
+
+Windows (PowerShell):
+
+```powershell
+Remove-Item -Recurse "$HOME\.cursor\plugins\local\explain-my-way" -ErrorAction SilentlyContinue
+Remove-Item -Recurse "$HOME\.cursor\skills\explain-my-way-cursor-setup" -ErrorAction SilentlyContinue
+```
+
+macOS / Linux:
+
+```bash
+rm -rf ~/.cursor/plugins/local/explain-my-way ~/.cursor/skills/explain-my-way-cursor-setup
+```
+
 ## Limits
 
 - An output style is an instruction, not a guarantee. If an answer misses, say "simpler" or "too long" and Claude will adjust and offer to update your profile.
 - Output styles do not apply to subagents.
-- Optional project notes: `.claude/explain-my-way/glossary.md` and `.claude/explain-my-way/architecture.md`. Claude reads them if they exist and asks before adding to them.
+- Optional project notes: `.claude/explain-my-way/glossary.md` and `.claude/explain-my-way/architecture.md`. Claude reads them if they exist and asks before adding to them. In Cursor, the same files go in `.cursor/explain-my-way/`.
+- Cursor merges all rules. Team and project rules win over User Rules when they conflict.
 
 ## Status
 
-Version 0.3 — early version, tested on Windows. Feedback and issues welcome.
+Version 0.4 — early version. Claude Code is tested on Windows; Cursor support is new. Feedback and issues welcome.
+
+### Changes in 0.4
+
+- Cursor version: its own plugin manifest (`.cursor-plugin/plugin.json`) and setup skill (`/explain-my-way-cursor-setup`), which creates a User Rule or a project rule. The Claude Code version is unchanged.
 
 ### Changes in 0.3
 

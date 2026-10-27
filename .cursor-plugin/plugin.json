@@ -1,0 +1,15 @@
+{
+  "name": "explain-my-way",
+  "displayName": "explain-my-way",
+  "description": "Makes Cursor's agent explain concepts, terms and code changes in the way you understand them. Short calibration, then a personal rule.",
+  "version": "0.4.0",
+  "author": {
+    "name": "Bence"
+  },
+  "homepage": "https://github.com/obence09/explain-my-way",
+  "repository": "https://github.com/obence09/explain-my-way",
+  "license": "MIT",
+  "keywords": ["explanations", "rules", "learning", "onboarding"],
+  "logo": ".claude-plugin/icon.png",
+  "skills": "./cursor/skills/"
+}
