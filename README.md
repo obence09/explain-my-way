@@ -115,11 +115,7 @@ To change settings later: `/explain-my-way-setup update`.
 
 Cursor has no output styles, so in Cursor explain-my-way becomes a **rule**: text that Cursor adds to every chat. The Cursor version has its own setup command, `/explain-my-way-cursor-setup`.
 
-### Option 1 — from the Cursor Marketplace
-
-Once explain-my-way is listed in the Cursor Marketplace: open **Customize** in the sidebar, find **explain-my-way**, select **Install**, and choose the user scope.
-
-### Option 2 — as a local plugin
+### Option 1 — as a local plugin
 
 Clone the repository into Cursor's local plugin folder.
 
@@ -135,9 +131,9 @@ macOS / Linux:
 git clone https://github.com/obence09/explain-my-way.git ~/.cursor/plugins/local/explain-my-way
 ```
 
-Then restart Cursor, or run **Developer: Reload Window** from the command palette. Some company setups turn off local plugins; if so, use option 3.
+Then restart Cursor, or run **Developer: Reload Window** from the command palette. Some company setups turn off local plugins; if so, use option 2.
 
-### Option 3 — as a personal skill (always works)
+### Option 2 — as a personal skill (always works)
 
 Copy the folder `cursor/skills/explain-my-way-cursor-setup` into Cursor's personal skills folder.
 
@@ -219,7 +215,7 @@ rm ~/.claude/output-styles/explain-my-way.md
 ### Remove from Cursor
 
 1. Delete your rule: the User Rule in **Customize → Rules**, or the file `.cursor/rules/explain-my-way.mdc` in each project where you saved it.
-2. Uninstall the plugin in **Customize**, or delete the local plugin or skill folder.
+2. Delete the local plugin or skill folder.
 
 Windows (PowerShell):
 
